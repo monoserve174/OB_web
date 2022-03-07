@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block main -%}
+    <div class="container my-3">
+        <form method="post" action="{{ url_for('join') }}">
+            <label for="formName" class="form-label" hidden>表單名稱</label>
+            <input type="text" class="form-control" name="formName" id="formName" value=
+                    "joinForm" hidden>
+            {% if user -%}
+                <label for="userId" class="form-label" hidden>人員識別碼</label>
+                <input type="text" class="form-control" name="userId" id="userId" value=
+                        "{{ user.id }}" hidden>
+            {%- endif %}
+            <div class="mb-3">
+                <label for="userName" class="form-label">姓名</label>
+                <input type="text" class="form-control" name="userName" id="userName" value=
+                        "{% if user %}{{ user.name }}{% endif %}">
+            </div>
+            <div class="mb-3">
+                <label for="userAmid" class="form-label">入學年</label>
+                <input type="text" class="form-control" name="userAmid" id="userAmid" value=
+                        "{% if user %}{{ user.amid }}{% endif %}">
+            </div>
+            {% if not user -%}
+                <button type="submit" class="btn btn-primary">送出</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">儲存</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delUserModal">
+                    刪除
+                </button>
+            {%- endif %}
+        </form>
+        {% if user %}
+            <!-- Modal -->
+            <div class="modal fade" id="delUserModal" tabindex="-1" aria-labelledby="delUserFormLable"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delUserFormLable">確認刪除</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <form class="modal-body" method="post" action="{{ url_for('join') }}">
+                            <label for="formName" class="form-label" hidden>表單名稱</label>
+                            <input type="text" class="form-control" name="formName" id="formName" value=
+                                    "delUserForm" hidden>
+                            <label for="userId" class="form-label" hidden>人員識別碼</label>
+                            <input type="text" class="form-control" name="userId" id="userId" value=
+                                    "{{ user.id }}" hidden>
+                            <samp class="d-flex justify-content-end mr-5">
+                                <button type="submit" class="btn btn-primary w-25">確認刪除</button>
+                            </samp>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{%- endblock main %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block main -%}
+    <div class="container my-3">
+        <div style="width: 300px; margin: 0 auto 0;">
+            <ul class="list-group list-group-flush">
+                {% for user in userData %}
+                    <li class="list-group-item"><span class="h5">{{ user.amid }}
+                        <span style="display: inline-block;width: 10px"></span>
+                        {{ user.name }}
+                        <span style="display: inline-block;width: 50px"></span>
+                        </span>
+                        <form style="display: inline" method="post" action="{{ url_for('join') }}">
+                            <label for="formName" class="form-label" hidden>表單名稱</label>
+                            <input type="text" class="form-control" name="formName" id="formName" value="editUser" hidden>
+                            <label for="userId" class="form-label" hidden>人員識別碼</label>
+                            <input type="text" class="form-control" name="userId" id="userId" value="{{ user.id }}" hidden>
+                            <button type="submit" class="btn btn-primary">修改</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{%- endblock main %}

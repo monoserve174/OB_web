@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main -%}
+    <div class="container my-3">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 75vw;">
+            <form class="card-header" method="post" action="{{ url_for('addmessage') }}">
+                <div class="mb-3">
+                    <label for="formName" class="form-label" hidden>表單名稱</label>
+                    <input type="text" class="form-control" name="formName" id="formName" value="talkForm" hidden>
+                </div>
+                <div class="mb-3">
+                    <label for="messageName" class="form-label">名字</label>
+                    <input type="text" class="form-control" name="messageName" id="messageName"
+                           placeholder="名字或綽號">
+                </div>
+                <div class="mb-3">
+                    <label for="messageBody" class="form-label">留言</label>
+                    <textarea class="form-control" name="messageBody" id="messageBody" rows="5"
+                              placeholder="留言"></textarea>
+                </div>
+                <div style="margin-left: 90%">
+                    <button type="submit" class="btn btn-dark">確認</button>
+                </div>
+            </form>
+            {% with talks = messages %}
+                {% for talk in talks %}
+                    {% if loop.index is even %}
+                        <div class="card-body">
+                            <form class="d-flex justify-content-end">
+                                <input name="messageId" value="{{ talk.id }}" hidden action="{{ url_for('removemessage') }}">
+                                <button type="submit" class="btn-close btn-close-white" aria-label="Close"></button>
+                            </form>
+                            <h5 class="card-title">{{ talk.name }}</h5>
+                            <p class="card-text ">{{ talk.body }}</p>
+                        </div>
+                    {% else %}
+                        <div class="card-body bg-light text-dark">
+                            <form class="d-flex justify-content-end" method="post" action="{{ url_for('removemessage') }}">
+                                <input name="messageId" value="{{ talk.id }}" hidden>
+                                <button type="submit" class="btn-close" aria-label="Close"></button>
+                            </form>
+                            <h5 class="card-title">{{ talk.name }}</h5>
+                            <p class="card-text ">{{ talk.body }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+{%- endblock main %}

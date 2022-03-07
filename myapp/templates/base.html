@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block style -%}
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/all.min.css') }}" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'FontAwesome; '
+        }
+    </style>
+    {%- endblock style %}
+    <title>Older Horse In Dong Hua</title>
+</head>
+
+<body>
+    {% block navbar -%}
+    <div class="fixed-top">
+        <a style="text-decoration-line: none" class="bg-dark p-2 text-white d-flex align-items-center"
+            href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='imgs/NDHUAM_logo.png') }}"
+                style="width: 3vw; filter: invert(100%);" alt="Logo">
+            <samp class="mx-3"
+                style="font-weight:500; line-height:1.2; font-size:calc(1.3rem + .6vw);">國立東華大學應用數學系排球OB賽</samp>
+        </a>
+        <div class="py-3 bg-secondary">
+            <ul class="nav justify-content-around">
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('index') }}">
+                        <i class="fa-solid fa-house-chimney-user" style="font-size: 10vmin;"></i>
+                        <a>
+                            Home
+                        </a>
+                    </a>
+                </li>
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('join') }}">
+                        <i class="fa-solid fa-user-plus" style="font-size: 10vmin;"></i>
+                        <a>
+                            報名
+                        </a>
+                    </a>
+                </li>
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('joinerinfo') }}">
+                        <i class="fa-solid fa-users" style="font-size: 10vmin;"></i>
+                        <a>
+                            報名資料
+                        </a>
+                    </a>
+                </li>
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('playtime') }}">
+                        <i class="fa-solid fa-volleyball" style="font-size: 10vmin;"></i>
+                        <a>
+                            賽程
+                        </a>
+                    </a>
+                </li>
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('messages') }}">
+                        <i class="fa-solid fa-clipboard" style="font-size: 10vmin;"></i>
+                        <a>
+                            留言板
+                        </a>
+                    </a>
+                </li>
+                <li class="nav-item d-flex flex-column align-items-center">
+                    <a class="text-dark" href="{{ url_for('info') }}">
+                        <i class="fa-solid fa-circle-info" style="font-size: 10vmin;"></i>
+                        <a>
+                            其他資訊
+                        </a>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {%- endblock navbar %}
+    <div class="container-fluid" style="margin-top: 15rem; min-height: 60vh;">
+        {% with messages = get_flashed_messages() -%}
+        {% for message in messages -%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message | safe }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {%- endfor %}
+        {%- endwith %}
+        {% block main -%}
+        {%- endblock main %}
+    </div>
+    {% block footer -%}
+    <footer class="bg-dark text-white pt-3 mb-0">
+        <div class="w-100 container">
+            <span class="h3">聯絡資訊</span>
+            <p class="d-flex justify-content-between mb-0">
+                <span class="h5">呂一昕</span>
+                <span class="h5">手機:0972733147</span>
+                <span class="h5"> 電話:038663537</span>
+                <span class="h5">信箱:610911007@gmail.com</span>
+            </p>
+        </div>
+    </footer>
+    {%- endblock footer %}
+    {% block script -%}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    {%- endblock script %}
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block main -%}
+    <div class="container my-3 text-center">
+        <div class="card" style="">
+            <img src="{{ url_for('static', filename='/imgs/first.jpg') }}" class="img-fluid" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">第一屆OB賽</h5>
+            </div>
+        </div>
+    </div>
+    <div class="container my-3 text-center">
+        <div class="card" style="">
+            <img src="{{ url_for('static', filename='/imgs/second.jpg') }}" class="img-fluid" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">第二屆OB賽</h5>
+            </div>
+        </div>
+    </div>
+{%- endblock main %}
