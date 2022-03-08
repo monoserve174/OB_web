@@ -10,5 +10,5 @@ if not isWin:
 
 class Config(object):
     SECRET_KEY = os.getenv("SECRET_KEY", "KevinDevFromConfig")
-    SQLALCHEMY_DATABASE_URI = db_prefix + os.path.join(basedir, 'static\\database.db')
+    SQLALCHEMY_DATABASE_URI = db_prefix + os.path.join(basedir, 'static/database.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
