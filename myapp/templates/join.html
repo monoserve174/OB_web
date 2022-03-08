@@ -13,12 +13,12 @@
             <div class="mb-3">
                 <label for="userName" class="form-label">姓名</label>
                 <input type="text" class="form-control" name="userName" id="userName" value=
-                        "{% if user %}{{ user.name }}{% endif %}">
+                        "{% if user %}{{ user.name }}{% endif %}" placeholder="名字或綽號">
             </div>
             <div class="mb-3">
                 <label for="userAmid" class="form-label">入學年</label>
                 <input type="text" class="form-control" name="userAmid" id="userAmid" value=
-                        "{% if user %}{{ user.amid }}{% endif %}">
+                        "{% if user %}{{ user.amid }}{% endif %}" placeholder="AMXXX, AM秘密...">
             </div>
             {% if not user -%}
                 <button type="submit" class="btn btn-primary">送出</button>
